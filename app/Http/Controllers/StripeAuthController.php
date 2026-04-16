@@ -66,14 +66,14 @@ class StripeAuthController extends Controller
         ]);
     }
 
-    public function login(Request $request) {
+    public function retrieveAccount(Request $request) {
+
+        $stripe = new \Stripe\StripeClient(env('SECRET_KEY'));
+        $respAccount = $stripe->respAccounts->retrieve('acct_1Nv0FGQ9RKHgCVdK', []);
         return response()->json([
             'code' => 200,
             'message' => 'success',
-            'data' => array(
-                array('id' => 1001, 'first_name' => 'Ram Pukar', 'last_name' => 'Chaudhary', 'address' => 'Patan, Lalitpur'),
-                array('id' => 1002, 'first_name' => 'Mukesh Kumar', 'last_name' => 'Chaudhary', 'address' => 'Gwarko, Lalitpur'),
-            ),
+            'data' => $respAccount,
         ]);
     }
 }

@@ -1,0 +1,5 @@
+Todo
+	-- Stripe Platform Account
+
+STEP FLOW:
+	D:\wampserver64\www\yig2023\stripe_saas_cli\stripe.exe login

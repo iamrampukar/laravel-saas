@@ -9,4 +9,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::post('stripe/create', [StripeAuthController::class, 'create'])->name('stripe.create');
-Route::get('stripe/login', [StripeAuthController::class, 'login'])->name('stripe.login');
+Route::get('stripe/retrieve-account', [StripeAuthController::class, 'retrieveAccount'])->name('stripe.retrieve_account');
