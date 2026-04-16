@@ -45,4 +45,35 @@ class StripeAuthController extends Controller
     {
         //
     }
+
+    public function create(Request $request) {
+        $stripe = new \Stripe\StripeClient(env('SECRET_KEY'));
+
+        $respStripe = $stripe->accounts->create([
+            'country' => 'US',
+            'email' => 'rampukar.dev@gmail.com',
+            'controller' => [
+                'fees' => ['payer' => 'application'],
+                'losses' => ['payments' => 'application'],
+                'stripe_dashboard' => ['type' => 'express'],
+            ],
+        ]);
+        
+        return response()->json([
+            'code' => 200,
+            'message' => 'success',
+            'data' => $respStripe,
+        ]);
+    }
+
+    public function login(Request $request) {
+        return response()->json([
+            'code' => 200,
+            'message' => 'success',
+            'data' => array(
+                array('id' => 1001, 'first_name' => 'Ram Pukar', 'last_name' => 'Chaudhary', 'address' => 'Patan, Lalitpur'),
+                array('id' => 1002, 'first_name' => 'Mukesh Kumar', 'last_name' => 'Chaudhary', 'address' => 'Gwarko, Lalitpur'),
+            ),
+        ]);
+    }
 }
